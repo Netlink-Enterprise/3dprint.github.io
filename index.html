@@ -28,14 +28,13 @@
         box-sizing: border-box;
       }
 
-      /* Custom Cursor */
       body {
         cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%236366f1' stroke-width='2'%3E%3Cpath d='M12 2L4 12l8 10 8-10z'/%3E%3Cpath d='M8 12h8M12 6v6'/%3E%3C/svg%3E"), auto;
         background: var(--bg-dark);
         color: var(--text-light);
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         min-height: 100vh;
-        background-image: url('https://res.cloudinary.com/dtz0urit6/image/upload/q_auto:best,f_jpg/cloudinary-tools-uploads/fxrfydvih8mqsh1suc6m'); /* Add your background image URL here */
+        background-image: url('https://res.cloudinary.com/dtz0urit6/image/upload/q_auto:best,f_jpg/cloudinary-tools-uploads/fxrfydvih8mqsh1suc6m');
         background-size: cover;
         background-position: center;
         background-attachment: fixed;
@@ -53,7 +52,6 @@
         z-index: -1;
       }
 
-      /* Scrollbar Styling */
       ::-webkit-scrollbar {
         width: 8px;
       }
@@ -68,7 +66,6 @@
         background: var(--primary-dark);
       }
 
-      /* Header */
       header {
         background: rgba(10, 10, 23, 0.95);
         backdrop-filter: blur(10px);
@@ -110,7 +107,6 @@
         font-size: 1.5rem;
       }
 
-      /* Search Bar */
       .search-container {
         flex: 1;
         max-width: 500px;
@@ -138,7 +134,6 @@
         color: var(--border);
       }
 
-      /* Navigation */
       nav ul {
         display: flex;
         list-style: none;
@@ -176,7 +171,6 @@
         width: 80%;
       }
 
-      /* Main Layout */
       .container {
         max-width: 1400px;
         margin: 0 auto;
@@ -186,7 +180,6 @@
         gap: 2rem;
       }
 
-      /* Side Calculator */
       .side-calculator {
         background: rgba(20, 20, 40, 0.8);
         border: 1px solid var(--border);
@@ -278,7 +271,6 @@
         border-color: #dc2626;
       }
 
-      /* Promo Code */
       .promo-code-container {
         margin-top: 1.5rem;
         padding: 1rem;
@@ -336,7 +328,6 @@
         color: var(--danger);
       }
 
-      /* Price Summary */
       .price-summary {
         margin-top: 1.5rem;
         padding: 1rem;
@@ -366,14 +357,12 @@
         color: var(--success);
       }
 
-      /* Main Content */
       main {
         display: flex;
         flex-direction: column;
         gap: 2rem;
       }
 
-      /* Hero Section */
       .hero {
         background: linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(139, 92, 246, 0.2));
         border: 1px solid var(--border);
@@ -399,7 +388,6 @@
         margin: 0 auto;
       }
 
-      /* Product Sections */
       .section {
         background: rgba(20, 20, 40, 0.8);
         border: 1px solid var(--border);
@@ -433,7 +421,6 @@
         border-radius: 2px;
       }
 
-      /* Dragon Section */
       .products-grid {
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -481,7 +468,6 @@
         transform: scale(1.05);
       }
 
-      /* Color Swatches */
       .color-swatch {
         width: 24px;
         height: 24px;
@@ -502,7 +488,6 @@
         box-shadow: 0 0 0 2px var(--primary);
       }
 
-      /* Color preview in product image */
       .color-overlay {
         position: absolute;
         top: 0;
@@ -606,7 +591,6 @@
         background: var(--primary-dark);
       }
 
-      /* Custom Section */
       .custom-section {
         background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(139, 92, 246, 0.1));
         border: 1px solid var(--secondary);
@@ -706,7 +690,6 @@
         box-shadow: var(--shadow-lg);
       }
 
-      /* Admin Panel */
       .admin-panel {
         background: rgba(30, 30, 50, 0.8);
         border: 1px solid var(--warning);
@@ -720,7 +703,6 @@
         animation: fadeIn 0.5s ease;
       }
 
-      /* Password Modal */
       .password-modal {
         display: none;
         position: fixed;
@@ -892,7 +874,15 @@
         background: #dc2626;
       }
 
-      /* Orders List */
+      .admin-btn.signout {
+        background: var(--danger);
+        color: white;
+      }
+
+      .admin-btn.signout:hover {
+        background: #dc2626;
+      }
+
       .orders-list {
         margin-top: 1.5rem;
         max-height: 300px;
@@ -929,7 +919,20 @@
         font-size: 0.9rem;
       }
 
-      /* Footer */
+      .hiring-applications {
+        margin-top: 1.5rem;
+        max-height: 300px;
+        overflow-y: auto;
+      }
+
+      .application-item {
+        background: var(--bg-darker);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 1rem;
+        margin-bottom: 0.75rem;
+      }
+
       footer {
         background: rgba(10, 10, 23, 0.95);
         padding: 2rem;
@@ -969,7 +972,146 @@
         font-size: 0.9rem;
       }
 
-      /* Responsive */
+      .rules-section {
+        background: rgba(20, 20, 40, 0.8);
+        border: 1px solid var(--border);
+        border-radius: 15px;
+        padding: 1.5rem;
+        margin-bottom: 2rem;
+      }
+
+      .rules-section h2 {
+        color: var(--warning);
+        margin-bottom: 1rem;
+        font-size: 1.5rem;
+      }
+
+      .rules-list {
+        list-style: none;
+        color: var(--text-light);
+      }
+
+      .rules-list li {
+        padding: 0.5rem 0;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .rules-list li:last-child {
+        border-bottom: none;
+      }
+
+      .join-section {
+        background: rgba(20, 20, 40, 0.8);
+        border: 1px solid var(--success);
+        border-radius: 15px;
+        padding: 1.5rem;
+        margin-bottom: 2rem;
+      }
+
+      .join-section h2 {
+        color: var(--success);
+        margin-bottom: 1rem;
+        font-size: 1.5rem;
+      }
+
+      .join-form {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        max-width: 500px;
+        margin: 0 auto;
+      }
+
+      .cart-preview {
+        background: rgba(20, 20, 40, 0.8);
+        border: 1px solid var(--success);
+        border-radius: 15px;
+        padding: 1.5rem;
+        margin-bottom: 2rem;
+      }
+
+      .cart-preview h2 {
+        color: var(--success);
+        margin-bottom: 1rem;
+        font-size: 1.5rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .cart-items {
+        max-height: 300px;
+        overflow-y: auto;
+        margin-bottom: 1rem;
+      }
+
+      .cart-item {
+        background: var(--bg-darker);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 0.75rem;
+        margin-bottom: 0.5rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .cart-item-info {
+        flex: 1;
+      }
+
+      .cart-item-name {
+        font-weight: 600;
+        color: var(--text-light);
+        margin-bottom: 0.25rem;
+      }
+
+      .cart-item-details {
+        font-size: 0.85rem;
+        color: var(--text-light);
+        opacity: 0.8;
+      }
+
+      .cart-item-price {
+        color: var(--success);
+        font-weight: 600;
+      }
+
+      .cart-empty {
+        color: var(--text-light);
+        opacity: 0.7;
+        text-align: center;
+        padding: 1rem;
+      }
+
+      .cart-total {
+        border-top: 1px solid var(--border);
+        padding-top: 1rem;
+        display: flex;
+        justify-content: space-between;
+        font-weight: 600;
+        color: var(--success);
+        font-size: 1.1rem;
+      }
+
+      .clear-cart-btn {
+        width: 100%;
+        padding: 0.75rem;
+        border: none;
+        border-radius: 8px;
+        background: var(--danger);
+        color: white;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        margin-top: 1rem;
+      }
+
+      .clear-cart-btn:hover {
+        background: #dc2626;
+      }
+
       @media (max-width: 1024px) {
         .container {
           grid-template-columns: 1fr;
@@ -1001,7 +1143,6 @@
         }
       }
 
-      /* Animations */
       @keyframes fadeIn {
         from {
           opacity: 0;
@@ -1020,7 +1161,6 @@
         animation: fadeIn 0.5s ease forwards;
       }
 
-      /* Tooltip */
       .tooltip {
         position: relative;
       }
@@ -1048,7 +1188,6 @@
         visibility: visible;
       }
 
-      /* Loading state */
       .loading {
         display: inline-block;
         width: 20px;
@@ -1086,6 +1225,7 @@
             <li><a href="#dragon-section" class="tooltip" data-tooltip="Dragon Prints">🐉 Dragons</a></li>
             <li><a href="#custom-section" class="tooltip" data-tooltip="Custom Orders">✨ Custom</a></li>
             <li><a href="#contact" class="tooltip" data-tooltip="Contact Us">📞 Contact</a></li>
+            <li><a href="#cart-preview" class="tooltip" data-tooltip="View Cart">🛒 Cart</a></li>
           </ul>
         </nav>
       </div>
@@ -1142,21 +1282,6 @@
           </div>
           <div class="promo-message" id="promo-message"></div>
         </div>
-
-        <div class="price-summary">
-          <h3>Order Summary</h3>
-          <div id="price-items">
-            <!-- Price items will be added dynamically -->
-          </div>
-          <div class="price-item" id="discount-line" style="display: none;">
-            <span>Discount:</span>
-            <span id="discount-amount">-$0.00</span>
-          </div>
-          <div class="price-item price-total">
-            <span>Total:</span>
-            <span id="total-price">$0.00</span>
-          </div>
-        </div>
       </aside>
 
       <!-- Main Content -->
@@ -1165,6 +1290,29 @@
         <section class="hero">
           <h1>Welcome to Our 3D Printing Service</h1>
           <p>High-quality 3D prints customized to your needs. Choose from our popular designs or create your own custom masterpiece.</p>
+        </section>
+
+        <!-- Rules Section -->
+        <section class="rules-section">
+          <h2>⚠️ Rules</h2>
+          <ul class="rules-list">
+            <li><strong>Cash Only</strong></li>
+            <li><strong>Money First</strong></li>
+            <li><strong>Then 3D Print</strong></li>
+          </ul>
+        </section>
+
+        <!-- Cart Preview Section -->
+        <section class="cart-preview" id="cart-preview">
+          <h2>🛒 Your Cart</h2>
+          <div class="cart-items" id="cart-items">
+            <!-- Cart items will be displayed here -->
+          </div>
+          <div class="cart-total">
+            <span>Total:</span>
+            <span id="cart-total-price">$0.00</span>
+          </div>
+          <button class="clear-cart-btn" onclick="clearCart()">Clear Cart</button>
         </section>
 
         <!-- Dragon Section -->
@@ -1195,6 +1343,29 @@
           <div class="products-grid" id="decor-products">
             <!-- Decor products will be loaded here -->
           </div>
+        </section>
+
+        <!-- Join Our Team Section -->
+        <section class="join-section">
+          <h2>🤝 Join Our Team</h2>
+          <p style="text-align: center; color: var(--text-light); opacity: 0.9; margin-bottom: 1.5rem;">
+            Interested in being part of our company? Fill out the form below!
+          </p>
+          <form class="join-form" id="join-form">
+            <div class="form-group">
+              <label for="join-name">Your Name</label>
+              <input type="text" class="form-input" id="join-name" required />
+            </div>
+            <div class="form-group">
+              <label for="join-email">Email Address</label>
+              <input type="email" class="form-input" id="join-email" required />
+            </div>
+            <div class="form-group">
+              <label for="join-message">Why do you want to join?</label>
+              <textarea class="form-textarea" id="join-message" placeholder="Tell us about yourself..." required></textarea>
+            </div>
+            <button type="submit" class="submit-btn">Submit Application</button>
+          </form>
         </section>
 
         <!-- Custom Section -->
@@ -1241,47 +1412,64 @@
 
         <!-- Admin Panel -->
         <section class="admin-panel" id="admin-panel">
-          <h2>🛠️ Admin Panel - Add Products</h2>
-          <form class="admin-form" id="admin-form">
-            <div class="form-group">
-              <label for="admin-name">Product Name</label>
-              <input type="text" class="admin-input" id="admin-name" placeholder="e.g., Dragon Figurine" required />
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+            <h2>🛠️ Admin Panel</h2>
+            <button class="admin-btn signout" onclick="signOutAdmin()">Sign Out</button>
+          </div>
+
+          <!-- Add Products Form -->
+          <div style="margin-bottom: 2rem;">
+            <h3 style="color: var(--warning); margin-bottom: 1rem;">Add Products</h3>
+            <form class="admin-form" id="admin-form">
+              <div class="form-group">
+                <label for="admin-name">Product Name</label>
+                <input type="text" class="admin-input" id="admin-name" placeholder="e.g., Dragon Figurine" required />
+              </div>
+              <div class="form-group">
+                <label for="admin-section">Section</label>
+                <select class="admin-input" id="admin-section">
+                  <option value="dragon">Dragon</option>
+                  <option value="fantasy">Fantasy</option>
+                  <option value="decor">Home Decor</option>
+                  <option value="custom">Custom</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="admin-description">Description</label>
+                <input type="text" class="admin-input" id="admin-description" placeholder="Product description" />
+              </div>
+              <div class="form-group">
+                <label for="admin-price">Base Price ($)</label>
+                <input type="number" class="admin-input" id="admin-price" placeholder="0.00" step="0.01" required />
+              </div>
+              <div class="form-group">
+                <label for="admin-sizes">Available Sizes (format: "Size:Price" or just "Size")</label>
+                <input type="text" class="admin-input" id="admin-sizes" placeholder="e.g., Small:20, Medium:25, Large:30" />
+              </div>
+              <div class="form-group">
+                <label for="admin-colors">Available Colors (comma separated)</label>
+                <input type="text" class="admin-input" id="admin-colors" placeholder="e.g., Red, Blue, Green, Gold" />
+              </div>
+              <div class="form-group">
+                <label for="admin-image">Image URL</label>
+                <input type="text" class="admin-input" id="admin-image" placeholder="https://example.com/image.jpg" />
+              </div>
+              <div class="admin-actions">
+                <button type="button" class="admin-btn add" onclick="addProduct()">+ Add Product</button>
+                <button type="button" class="admin-btn clear" onclick="clearAdminForm()">Clear</button>
+              </div>
+            </form>
+          </div>
+
+          <!-- Hiring Applications Section -->
+          <div class="hiring-applications">
+            <h3 style="color: var(--success); margin-bottom: 1rem;">Hiring Applications</h3>
+            <div id="applications-container">
+              <!-- Applications will be displayed here -->
             </div>
-            <div class="form-group">
-              <label for="admin-section">Section</label>
-              <select class="admin-input" id="admin-section">
-                <option value="dragon">Dragon</option>
-                <option value="fantasy">Fantasy</option>
-                <option value="decor">Home Decor</option>
-                <option value="custom">Custom</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label for="admin-description">Description</label>
-              <input type="text" class="admin-input" id="admin-description" placeholder="Product description" />
-            </div>
-            <div class="form-group">
-              <label for="admin-price">Base Price ($)</label>
-              <input type="number" class="admin-input" id="admin-price" placeholder="0.00" step="0.01" required />
-            </div>
-            <div class="form-group">
-              <label for="admin-sizes">Available Sizes (format: "Size:Price" or just "Size")</label>
-              <input type="text" class="admin-input" id="admin-sizes" placeholder="e.g., Small:20, Medium:25, Large:30" />
-            </div>
-            <div class="form-group">
-              <label for="admin-colors">Available Colors (comma separated)</label>
-              <input type="text" class="admin-input" id="admin-colors" placeholder="e.g., Red, Blue, Green, Gold" />
-            </div>
-            <div class="form-group">
-              <label for="admin-image">Image URL</label>
-              <input type="text" class="admin-input" id="admin-image" placeholder="https://example.com/image.jpg" />
-            </div>
-            <div class="admin-actions">
-              <button type="button" class="admin-btn add" onclick="addProduct()">+ Add Product</button>
-              <button type="button" class="admin-btn clear" onclick="clearAdminForm()">Clear</button>
-            </div>
-          </form>
-          
+          </div>
+
+          <!-- Orders List -->
           <div class="orders-list">
             <h3 style="margin-top: 1.5rem; margin-bottom: 1rem; color: var(--text-light);">Recent Orders</h3>
             <div id="orders-container">
@@ -1302,7 +1490,7 @@
           <a href="#">Contact</a>
         </div>
         <div class="copyright">
-          &copy; 2026 3D Print Company. All rights reserved.
+          &copy; 2026 3D Print Company. All rights reserved. <strong>Made by Manav</strong>
         </div>
       </div>
     </footer>
@@ -1322,8 +1510,7 @@
               "Large (20cm)": 30
             },
             colors: ["Red", "Orange", "Gold", "Black"],
-            imageUrl: "https://www.image2url.com/r2/default/images/1783705728769-abdf5928-7f83-4270-9389-202ca5e8e7bc.webp",
-            image: ""
+            imageUrl: "https://www.image2url.com/r2/default/images/1783705728769-abdf5928-7f83-4270-9389-202ca5e8e7bc.webp"
           },
           {
             id: 2,
@@ -1336,8 +1523,7 @@
               "Large (20cm)": 30
             },
             colors: ["Blue", "White", "Silver", "Purple"],
-            imageUrl: "https://www.image2url.com/r2/default/images/1783705768382-75ff4a8c-6a24-47ac-be13-fc8b959845d5.webp",
-            image: "❄️🐉"
+            imageUrl: "https://www.image2url.com/r2/default/images/1783705768382-75ff4a8c-6a24-47ac-be13-fc8b959845d5.webp"
           },
           {
             id: 3,
@@ -1349,8 +1535,7 @@
               "Medium (8cm)": 25
             },
             colors: ["Red", "Blue", "Green", "Gold"],
-            imageUrl: "https://www.image2url.com/r2/default/images/1783705822918-f9360b04-04cf-4957-b73b-2eef99201b59.webp",
-            image: "🥚"
+            imageUrl: "https://www.image2url.com/r2/default/images/1783705822918-f9360b04-04cf-4957-b73b-2eef99201b59.webp"
           }
         ],
         fantasy: [
@@ -1364,8 +1549,7 @@
               "Medium (15cm)": 38.99
             },
             colors: ["White", "Pink", "Purple", "Rainbow"],
-            imageUrl: "https://www.image2url.com/r2/default/images/1783705890961-20f0ee9f-ce57-468f-895a-03244a83e5a8.webp",
-            image: "🦄"
+            imageUrl: "https://www.image2url.com/r2/default/images/1783705890961-20f0ee9f-ce57-468f-895a-03244a83e5a8.webp"
           },
           {
             id: 5,
@@ -1377,8 +1561,7 @@
               "Large (18cm)": 42.50
             },
             colors: ["Red", "Orange", "Gold"],
-            imageUrl: "https://www.image2url.com/r2/default/images/1783705950808-1606c921-ed00-49e0-b10b-d45d535fac9f.jpeg",
-            image: "🔥🦅"
+            imageUrl: "https://www.image2url.com/r2/default/images/1783705950808-1606c921-ed00-49e0-b10b-d45d535fac9f.jpeg"
           }
         ],
         decor: [
@@ -1393,8 +1576,7 @@
               "Large": 30
             },
             colors: ["White", "Black", "Gold", "Silver"],
-            imageUrl: "https://www.image2url.com/r2/default/images/1783706010660-95b6bc45-fc0a-42ff-8849-719a0fd90da3.jpeg",
-            image: "🏺"
+            imageUrl: "https://www.image2url.com/r2/default/images/1783706010660-95b6bc45-fc0a-42ff-8849-719a0fd90da3.jpeg"
           },
           {
             id: 7,
@@ -1407,8 +1589,7 @@
               "20x20cm": 40
             },
             colors: ["White", "Black", "Gold"],
-            imageUrl: "https://www.image2url.com/r2/default/images/1783706094131-c7063cfb-629d-4763-b515-d38eee3fa904.webp",
-            image: "🖼️"
+            imageUrl: "https://www.image2url.com/r2/default/images/1783706094131-c7063cfb-629d-4763-b515-d38eee3fa904.webp"
           }
         ]
       };
@@ -1429,12 +1610,20 @@
       // Orders State
       let orders = [];
 
+      // Hiring Applications State
+      let hiringApplications = [];
+
+      // Admin State
+      let isAdminAuthenticated = false;
+
       // Initialize the page
       document.addEventListener('DOMContentLoaded', function() {
         loadProducts();
         setupSearch();
         setupForms();
         loadOrders();
+        loadHiringApplications();
+        updateCartPreview();
       });
 
       // Load products to their respective sections
@@ -1447,7 +1636,7 @@
       function loadProductsToSection(section, containerId) {
         const container = document.getElementById(containerId);
         container.innerHTML = '';
-        
+
         if (products[section] && products[section].length > 0) {
           products[section].forEach(product => {
             const productCard = createProductCard(product, section);
@@ -1474,17 +1663,6 @@
         'Default': '#6b7280'
       };
 
-      // Product images mapping
-      const productImages = {
-        'Fire Dragon': 'https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=300&h=300&fit=crop',
-        'Ice Dragon': 'https://images.unsplash.com/photo-1551698618-1dfe5d97d256?w=300&h=300&fit=crop',
-        'Dragon Egg': 'https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=300&h=300&fit=crop',
-        'Unicorn': 'https://images.unsplash.com/photo-1551698618-1dfe5d97d256?w=300&h=300&fit=crop',
-        'Phoenix': 'https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=300&h=300&fit=crop',
-        'Geometric Vase': 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=300&h=300&fit=crop',
-        'Wall Art': 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=300&h=300&fit=crop'
-      };
-
       function createProductCard(product, section) {
         const card = document.createElement('div');
         card.className = 'product-card';
@@ -1506,8 +1684,8 @@
           const colorValue = colorMap[color] || '#6b7280';
           const isFirst = index === 0;
           return `
-            <div class="color-swatch${isFirst ? ' selected' : ''}" 
-                 data-type="color" 
+            <div class="color-swatch${isFirst ? ' selected' : ''}"
+                 data-type="color"
                  data-value="${color}"
                  style="background: ${colorValue};"
                  title="${color}"></div>
@@ -1515,11 +1693,11 @@
         }).join('');
 
         // Get image URL
-        let imageHtml = product.image || '📦';
-        if (productImages[product.name]) {
-          imageHtml = `<img src="${productImages[product.name]}" alt="${product.name}" onerror="this.style.display='none'; this.parentElement.innerHTML='${product.image || '📦'}'" />`;
-        } else if (product.imageUrl) {
-          imageHtml = `<img src="${product.imageUrl}" alt="${product.name}" onerror="this.style.display='none'; this.parentElement.innerHTML='${product.image || '📦'}'" />`;
+        let imageHtml = '';
+        if (product.imageUrl) {
+          imageHtml = `<img src="${product.imageUrl}" alt="${product.name}" onerror="this.style.display='none'; this.parentElement.innerHTML='📦'" />`;
+        } else {
+          imageHtml = '📦';
         }
 
         // Get first size price for initial display
@@ -1566,7 +1744,7 @@
         // Get selected options
         const sizeBtn = document.querySelector(`#size-options-${productId} .option-btn.selected`);
         const colorSwatch = document.querySelector(`#color-options-${productId} .color-swatch.selected`);
-        
+
         if (!sizeBtn || !colorSwatch) {
           alert('Please select both size and color');
           return;
@@ -1574,7 +1752,7 @@
 
         const size = sizeBtn.dataset.value;
         const color = colorSwatch.dataset.value;
-        
+
         // Get price based on selected size
         let price = product.basePrice || product.price;
         if (product.sizePrices && product.sizePrices[size]) {
@@ -1593,8 +1771,7 @@
 
         totalPrice += price;
         updateCartDisplay();
-        
-        // Show confirmation
+        updateCartPreview();
         showNotification(`${product.name} (${size}, ${color}) added to cart for $${price.toFixed(2)}!`);
       }
 
@@ -1610,7 +1787,7 @@
 
         // Clear and rebuild price items
         priceItemsContainer.innerHTML = '';
-        
+
         cart.forEach(item => {
           const itemElement = document.createElement('div');
           itemElement.className = 'price-item';
@@ -1636,6 +1813,46 @@
         totalPriceElement.textContent = `$${finalTotal.toFixed(2)}`;
       }
 
+      // Update cart preview
+      function updateCartPreview() {
+        const cartItemsContainer = document.getElementById('cart-items');
+        const cartTotalPriceElement = document.getElementById('cart-total-price');
+
+        cartItemsContainer.innerHTML = '';
+
+        if (cart.length === 0) {
+          cartItemsContainer.innerHTML = '<div class="cart-empty">Your cart is empty.</div>';
+        } else {
+          cart.forEach(item => {
+            const itemElement = document.createElement('div');
+            itemElement.className = 'cart-item';
+            itemElement.innerHTML = `
+              <div class="cart-item-info">
+                <div class="cart-item-name">${item.name}</div>
+                <div class="cart-item-details">${item.size}, ${item.color}</div>
+              </div>
+              <div class="cart-item-price">$${item.price.toFixed(2)}</div>
+            `;
+            cartItemsContainer.appendChild(itemElement);
+          });
+        }
+
+        // Calculate total
+        const discount = totalPrice * currentDiscount;
+        const finalTotal = totalPrice - discount;
+        cartTotalPriceElement.textContent = `$${finalTotal.toFixed(2)}`;
+      }
+
+      // Clear cart
+      function clearCart() {
+        cart = [];
+        totalPrice = 0;
+        currentDiscount = 0;
+        updateCartDisplay();
+        updateCartPreview();
+        showNotification('Cart cleared!');
+      }
+
       // Promo code functions
       function applyPromoCode() {
         const promoInput = document.getElementById('promo-input');
@@ -1648,6 +1865,7 @@
           promoMessage.className = 'promo-message';
           promoMessage.style.display = 'block';
           updateCartDisplay();
+          updateCartPreview();
           showNotification(`Promo code "${code}" applied!`);
         } else {
           currentDiscount = 0;
@@ -1655,13 +1873,13 @@
           promoMessage.className = 'promo-message error';
           promoMessage.style.display = 'block';
           updateCartDisplay();
+          updateCartPreview();
         }
 
         promoInput.value = '';
       }
 
       function showNotification(message) {
-        // Create notification element
         const notification = document.createElement('div');
         notification.style.cssText = `
           position: fixed;
@@ -1680,7 +1898,6 @@
 
         document.body.appendChild(notification);
 
-        // Remove after 3 seconds
         setTimeout(() => {
           notification.style.animation = 'slideOut 0.3s ease';
           setTimeout(() => notification.remove(), 300);
@@ -1707,7 +1924,6 @@
 
       function calculate() {
         try {
-          // Replace × with * for calculation
           const expression = calcValue.replace(/×/g, '*');
           calcValue = eval(expression).toString();
           calcDisplay.textContent = calcValue;
@@ -1720,16 +1936,15 @@
       // Search functionality
       function setupSearch() {
         const searchInput = document.getElementById('search-input');
-        
+
         searchInput.addEventListener('input', function() {
           const query = this.value.toLowerCase();
-          
+
           if (query === '') {
             loadProducts();
             return;
           }
 
-          // Search across all products
           const results = [];
           Object.keys(products).forEach(section => {
             products[section].forEach(product => {
@@ -1740,13 +1955,11 @@
             });
           });
 
-          // Display results
           displaySearchResults(results);
         });
       }
 
       function displaySearchResults(results) {
-        // Clear all product sections
         document.getElementById('dragon-products').innerHTML = '';
         document.getElementById('fantasy-products').innerHTML = '';
         document.getElementById('decor-products').innerHTML = '';
@@ -1760,7 +1973,6 @@
           return;
         }
 
-        // Group results by section
         const groupedResults = {};
         results.forEach(result => {
           if (!groupedResults[result.section]) {
@@ -1769,7 +1981,6 @@
           groupedResults[result.section].push(result);
         });
 
-        // Display results in their respective sections
         Object.keys(groupedResults).forEach(section => {
           const container = document.getElementById(`${section}-products`);
           if (container) {
@@ -1783,15 +1994,13 @@
 
       // Option selection
       document.addEventListener('click', function(e) {
-        // Handle size buttons
         if (e.target.classList.contains('option-btn') && e.target.dataset.type === 'size') {
           const container = e.target.parentElement;
           container.querySelectorAll('.option-btn').forEach(btn => btn.classList.remove('selected'));
           e.target.classList.add('selected');
           updateProductPrice(e.target);
         }
-        
-        // Handle color swatches
+
         if (e.target.classList.contains('color-swatch')) {
           const container = e.target.parentElement;
           container.querySelectorAll('.color-swatch').forEach(swatch => swatch.classList.remove('selected'));
@@ -1800,17 +2009,16 @@
         }
       });
 
-      // Update product price based on selected size
       function updateProductPrice(sizeButton) {
         const productId = parseInt(sizeButton.closest('.product-card').dataset.id);
         const section = sizeButton.closest('.product-card').dataset.section;
         const product = findProductById(productId, section);
-        
+
         if (!product) return;
 
         const size = sizeButton.dataset.value;
         const priceElement = document.getElementById(`price-${productId}`);
-        
+
         let price = product.basePrice || product.price;
         if (product.sizePrices && product.sizePrices[size]) {
           price = product.sizePrices[size];
@@ -1821,13 +2029,12 @@
         }
       }
 
-      // Update color preview
       function updateColorPreview(colorSwatch) {
         const productId = parseInt(colorSwatch.closest('.product-card').dataset.id);
         const color = colorSwatch.dataset.value;
         const overlay = document.getElementById(`color-overlay-${productId}`);
         const colorValue = colorMap[color] || '#6b7280';
-        
+
         if (overlay) {
           overlay.innerHTML = `<span style="background: ${colorValue}; padding: 0.5rem 1rem; border-radius: 20px; color: ${color === 'White' || color === 'Rainbow' ? '#000' : '#fff'}; font-weight: bold;">${color}</span>`;
           overlay.style.background = 'rgba(0, 0, 0, 0.7)';
@@ -1836,10 +2043,9 @@
 
       // Admin functionality
       function setupForms() {
-        // Custom request form
         document.getElementById('custom-request-form').addEventListener('submit', function(e) {
           e.preventDefault();
-          
+
           const name = document.getElementById('custom-name').value;
           const email = document.getElementById('custom-email').value;
           const title = document.getElementById('custom-title').value;
@@ -1848,7 +2054,6 @@
           const color = document.getElementById('custom-color').value;
           const file = document.getElementById('custom-file').files[0];
 
-          // Create order
           const order = {
             id: Date.now(),
             type: 'custom',
@@ -1867,10 +2072,31 @@
           saveOrders();
           loadOrders();
 
-          // Show confirmation
           showNotification('Custom request submitted! We will contact you soon.');
-          
-          // Reset form
+          this.reset();
+        });
+
+        document.getElementById('join-form').addEventListener('submit', function(e) {
+          e.preventDefault();
+
+          const name = document.getElementById('join-name').value;
+          const email = document.getElementById('join-email').value;
+          const message = document.getElementById('join-message').value;
+
+          const application = {
+            id: Date.now(),
+            name: name,
+            email: email,
+            message: message,
+            date: new Date().toISOString(),
+            status: 'Pending'
+          };
+
+          hiringApplications.push(application);
+          saveHiringApplications();
+          loadHiringApplications();
+
+          showNotification('Application submitted! We will contact you soon.');
           this.reset();
         });
       }
@@ -1889,11 +2115,10 @@
           return;
         }
 
-        // Parse sizes with prices if format is "Size:Price"
         const sizes = [];
         const sizePrices = {};
         const sizeEntries = sizesInput.split(',').map(s => s.trim());
-        
+
         sizeEntries.forEach(entry => {
           if (entry.includes(':')) {
             const [size, price] = entry.split(':');
@@ -1901,12 +2126,10 @@
             sizePrices[size.trim()] = parseFloat(price.trim());
           } else {
             sizes.push(entry);
-            // Use base price for this size
             sizePrices[entry] = basePrice;
           }
         });
 
-        // Create new product
         const newProduct = {
           id: Date.now(),
           name: name,
@@ -1919,19 +2142,13 @@
           image: imageUrl ? '' : getProductEmoji(name)
         };
 
-        // Add to products
         if (!products[section]) {
           products[section] = [];
         }
         products[section].push(newProduct);
 
-        // Reload products
         loadProductsToSection(section, `${section}-products`);
-
-        // Show confirmation
         showNotification(`Product "${name}" added to ${section} section!`);
-
-        // Clear form
         clearAdminForm();
       }
 
@@ -1987,13 +2204,12 @@
           return;
         }
 
-        // Display last 5 orders
         const recentOrders = orders.slice(-5).reverse();
-        
+
         recentOrders.forEach(order => {
           const orderElement = document.createElement('div');
           orderElement.className = 'order-item';
-          
+
           const date = new Date(order.date).toLocaleDateString();
           const time = new Date(order.date).toLocaleTimeString();
 
@@ -2032,6 +2248,76 @@
         });
       }
 
+      // Hiring applications management
+      function saveHiringApplications() {
+        localStorage.setItem('3d-print-hiring-applications', JSON.stringify(hiringApplications));
+      }
+
+      function loadHiringApplications() {
+        const savedApplications = localStorage.getItem('3d-print-hiring-applications');
+        if (savedApplications) {
+          hiringApplications = JSON.parse(savedApplications);
+        }
+        displayHiringApplications();
+      }
+
+      function displayHiringApplications() {
+        const container = document.getElementById('applications-container');
+        container.innerHTML = '';
+
+        if (hiringApplications.length === 0) {
+          container.innerHTML = '<p style="color: var(--text-light); opacity: 0.7;">No hiring applications yet.</p>';
+          return;
+        }
+
+        hiringApplications.slice().reverse().forEach(app => {
+          const appElement = document.createElement('div');
+          appElement.className = 'application-item';
+
+          const date = new Date(app.date).toLocaleDateString();
+          const time = new Date(app.date).toLocaleTimeString();
+
+          appElement.innerHTML = `
+            <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+              <span style="color: var(--success); font-weight: 600;">Application #${app.id}</span>
+              <span style="color: var(--text-light); opacity: 0.7; font-size: 0.85rem;">${date} ${time}</span>
+            </div>
+            <div style="color: var(--text-light); font-size: 0.9rem;">
+              <strong>Name:</strong> ${app.name}<br>
+              <strong>Email:</strong> ${app.email}<br>
+              <strong>Message:</strong> ${app.message}<br>
+              <strong>Status:</strong> <span style="color: var(--warning);">${app.status}</span>
+            </div>
+            <div style="margin-top: 0.75rem; display: flex; gap: 0.5rem;">
+              <button class="admin-btn add" onclick="approveApplication(${app.id})" style="padding: 0.5rem 1rem; font-size: 0.85rem;">Approve</button>
+              <button class="admin-btn clear" onclick="rejectApplication(${app.id})" style="padding: 0.5rem 1rem; font-size: 0.85rem;">Reject</button>
+            </div>
+          `;
+
+          container.appendChild(appElement);
+        });
+      }
+
+      function approveApplication(id) {
+        const app = hiringApplications.find(a => a.id === id);
+        if (app) {
+          app.status = 'Approved';
+          saveHiringApplications();
+          loadHiringApplications();
+          showNotification(`Application #${id} approved!`);
+        }
+      }
+
+      function rejectApplication(id) {
+        const app = hiringApplications.find(a => a.id === id);
+        if (app) {
+          app.status = 'Rejected';
+          saveHiringApplications();
+          loadHiringApplications();
+          showNotification(`Application #${id} rejected.`);
+        }
+      }
+
       // Company name update
       function updateCompanyName(name) {
         document.getElementById('company-name').textContent = name;
@@ -2066,7 +2352,6 @@
 
       // Password protection for admin panel
       const ADMIN_PASSWORD = "201412";
-      let isAdminAuthenticated = false;
 
       function openPasswordModal() {
         document.getElementById('password-modal').classList.add('visible');
@@ -2090,14 +2375,22 @@
           closePasswordModal();
           document.getElementById('admin-panel').classList.add('visible');
           showNotification('Admin access granted!');
-          
-          // Scroll to admin panel
           document.getElementById('admin-panel').scrollIntoView({ behavior: 'smooth' });
         } else {
           errorElement.style.display = 'block';
           document.getElementById('password-input').value = '';
           document.getElementById('password-input').focus();
         }
+      }
+
+      // Sign out admin and refresh page
+      function signOutAdmin() {
+        isAdminAuthenticated = false;
+        document.getElementById('admin-panel').classList.remove('visible');
+        showNotification('Signed out of admin panel.');
+        setTimeout(() => {
+          window.location.reload();
+        }, 1000);
       }
 
       // Close modal on escape key
@@ -2114,7 +2407,7 @@
         }
       });
 
-      // Expose functions to global scope for inline event handlers
+      // Expose functions to global scope
       window.addToCart = addToCart;
       window.appendToCalc = appendToCalc;
       window.clearCalc = clearCalc;
@@ -2127,6 +2420,10 @@
       window.checkPassword = checkPassword;
       window.applyPromoCode = applyPromoCode;
       window.getProductEmoji = getProductEmoji;
+      window.signOutAdmin = signOutAdmin;
+      window.approveApplication = approveApplication;
+      window.rejectApplication = rejectApplication;
+      window.clearCart = clearCart;
     </script>
   </body>
 </html>
