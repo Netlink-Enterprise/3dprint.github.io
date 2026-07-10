@@ -1,1 +1,2132 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>3D Printing Services</title>
+    <style>
+      :root {
+        --primary: #6366f1;
+        --primary-dark: #4f46e5;
+        --secondary: #8b5cf6;
+        --bg-dark: #0f0f23;
+        --bg-darker: #0a0a17;
+        --text-light: #f8fafc;
+        --text-dark: #1e293b;
+        --accent: #ec4899;
+        --success: #22c55e;
+        --warning: #f59e0b;
+        --danger: #ef4444;
+        --border: #334155;
+        --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+        --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.4);
+      }
 
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      /* Custom Cursor */
+      body {
+        cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%236366f1' stroke-width='2'%3E%3Cpath d='M12 2L4 12l8 10 8-10z'/%3E%3Cpath d='M8 12h8M12 6v6'/%3E%3C/svg%3E"), auto;
+        background: var(--bg-dark);
+        color: var(--text-light);
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        min-height: 100vh;
+        background-image: url(''); /* Add your background image URL here */
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+      }
+
+      body::before {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(15, 15, 35, 0.85);
+        pointer-events: none;
+        z-index: -1;
+      }
+
+      /* Scrollbar Styling */
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: var(--bg-darker);
+      }
+      ::-webkit-scrollbar-thumb {
+        background: var(--primary);
+        border-radius: 4px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: var(--primary-dark);
+      }
+
+      /* Header */
+      header {
+        background: rgba(10, 10, 23, 0.95);
+        backdrop-filter: blur(10px);
+        padding: 1rem 2rem;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .header-content {
+        max-width: 1400px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
+
+      .logo {
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: var(--primary);
+        text-shadow: 0 0 10px rgba(99, 102, 241, 0.5);
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .logo-icon {
+        width: 40px;
+        height: 40px;
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+      }
+
+      /* Search Bar */
+      .search-container {
+        flex: 1;
+        max-width: 500px;
+        min-width: 250px;
+      }
+
+      .search-bar {
+        width: 100%;
+        padding: 0.75rem 1.25rem;
+        border: 2px solid var(--border);
+        border-radius: 50px;
+        background: var(--bg-darker);
+        color: var(--text-light);
+        font-size: 1rem;
+        transition: all 0.3s ease;
+        outline: none;
+      }
+
+      .search-bar:focus {
+        border-color: var(--primary);
+        box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+      }
+
+      .search-bar::placeholder {
+        color: var(--border);
+      }
+
+      /* Navigation */
+      nav ul {
+        display: flex;
+        list-style: none;
+        gap: 1.5rem;
+      }
+
+      nav a {
+        color: var(--text-light);
+        text-decoration: none;
+        font-weight: 500;
+        padding: 0.5rem 1rem;
+        border-radius: 20px;
+        transition: all 0.3s ease;
+        position: relative;
+      }
+
+      nav a:hover {
+        background: var(--primary);
+        color: white;
+      }
+
+      nav a::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        width: 0;
+        height: 2px;
+        background: var(--primary);
+        transition: all 0.3s ease;
+        transform: translateX(-50%);
+      }
+
+      nav a:hover::after {
+        width: 80%;
+      }
+
+      /* Main Layout */
+      .container {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 2rem;
+        display: grid;
+        grid-template-columns: 300px 1fr;
+        gap: 2rem;
+      }
+
+      /* Side Calculator */
+      .side-calculator {
+        background: rgba(20, 20, 40, 0.8);
+        border: 1px solid var(--border);
+        border-radius: 15px;
+        padding: 1.5rem;
+        position: sticky;
+        top: 100px;
+        height: fit-content;
+        box-shadow: var(--shadow-lg);
+      }
+
+      .side-calculator h2 {
+        color: var(--primary);
+        margin-bottom: 1.5rem;
+        font-size: 1.3rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .calculator-display {
+        background: var(--bg-darker);
+        border: 2px solid var(--border);
+        border-radius: 10px;
+        padding: 1rem;
+        margin-bottom: 1rem;
+        text-align: right;
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: var(--success);
+        min-height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+      }
+
+      .calculator-buttons {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 0.5rem;
+      }
+
+      .calc-btn {
+        padding: 0.75rem;
+        border: none;
+        border-radius: 8px;
+        background: var(--bg-darker);
+        color: var(--text-light);
+        font-size: 1rem;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        border: 1px solid var(--border);
+      }
+
+      .calc-btn:hover {
+        background: var(--primary);
+        border-color: var(--primary);
+      }
+
+      .calc-btn.operator {
+        background: var(--primary);
+        border-color: var(--primary);
+      }
+
+      .calc-btn.operator:hover {
+        background: var(--primary-dark);
+        border-color: var(--primary-dark);
+      }
+
+      .calc-btn.equals {
+        background: var(--success);
+        border-color: var(--success);
+        grid-column: span 2;
+      }
+
+      .calc-btn.equals:hover {
+        background: #16a34a;
+        border-color: #16a34a;
+      }
+
+      .calc-btn.clear {
+        background: var(--danger);
+        border-color: var(--danger);
+        grid-column: span 2;
+      }
+
+      .calc-btn.clear:hover {
+        background: #dc2626;
+        border-color: #dc2626;
+      }
+
+      /* Promo Code */
+      .promo-code-container {
+        margin-top: 1.5rem;
+        padding: 1rem;
+        background: var(--bg-darker);
+        border-radius: 10px;
+        border: 1px solid var(--border);
+      }
+
+      .promo-input-group {
+        display: flex;
+        gap: 0.5rem;
+      }
+
+      .promo-input {
+        flex: 1;
+        padding: 0.6rem 0.8rem;
+        border: 2px solid var(--border);
+        border-radius: 8px;
+        background: var(--bg-dark);
+        color: var(--text-light);
+        font-size: 0.9rem;
+        outline: none;
+        transition: all 0.3s ease;
+      }
+
+      .promo-input:focus {
+        border-color: var(--success);
+        box-shadow: 0 0 0 2px rgba(34, 197, 94, 0.2);
+      }
+
+      .promo-btn {
+        padding: 0.6rem 1rem;
+        border: none;
+        border-radius: 8px;
+        background: var(--success);
+        color: white;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        white-space: nowrap;
+      }
+
+      .promo-btn:hover {
+        background: #16a34a;
+      }
+
+      .promo-message {
+        margin-top: 0.75rem;
+        font-size: 0.85rem;
+        color: var(--success);
+        display: none;
+      }
+
+      .promo-message.error {
+        color: var(--danger);
+      }
+
+      /* Price Summary */
+      .price-summary {
+        margin-top: 1.5rem;
+        padding: 1rem;
+        background: var(--bg-darker);
+        border-radius: 10px;
+        border: 1px solid var(--border);
+      }
+
+      .price-summary h3 {
+        color: var(--text-light);
+        margin-bottom: 0.75rem;
+        font-size: 1rem;
+      }
+
+      .price-item {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 0.5rem;
+        color: var(--text-light);
+      }
+
+      .price-total {
+        border-top: 1px solid var(--border);
+        padding-top: 0.75rem;
+        margin-top: 0.75rem;
+        font-weight: 600;
+        color: var(--success);
+      }
+
+      /* Main Content */
+      main {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+      }
+
+      /* Hero Section */
+      .hero {
+        background: linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(139, 92, 246, 0.2));
+        border: 1px solid var(--border);
+        border-radius: 15px;
+        padding: 2rem;
+        text-align: center;
+        margin-bottom: 2rem;
+      }
+
+      .hero h1 {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .hero p {
+        color: var(--text-light);
+        font-size: 1.1rem;
+        max-width: 600px;
+        margin: 0 auto;
+      }
+
+      /* Product Sections */
+      .section {
+        background: rgba(20, 20, 40, 0.8);
+        border: 1px solid var(--border);
+        border-radius: 15px;
+        padding: 1.5rem;
+        box-shadow: var(--shadow);
+      }
+
+      .section-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1.5rem;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .section-title {
+        font-size: 1.5rem;
+        color: var(--primary);
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .section-title::before {
+        content: '';
+        width: 4px;
+        height: 24px;
+        background: var(--primary);
+        border-radius: 2px;
+      }
+
+      /* Dragon Section */
+      .products-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 1.5rem;
+      }
+
+      .product-card {
+        background: var(--bg-darker);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 1.25rem;
+        transition: all 0.3s ease;
+        cursor: pointer;
+      }
+
+      .product-card:hover {
+        transform: translateY(-5px);
+        box-shadow: var(--shadow-lg);
+        border-color: var(--primary);
+      }
+
+      .product-image {
+        width: 100%;
+        height: 200px;
+        background: linear-gradient(135deg, var(--border), var(--bg-darker));
+        border-radius: 8px;
+        margin-bottom: 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--border);
+        font-size: 3rem;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .product-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        transition: transform 0.3s ease;
+      }
+
+      .product-image:hover img {
+        transform: scale(1.05);
+      }
+
+      /* Color Swatches */
+      .color-swatch {
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        border: 2px solid var(--border);
+        cursor: pointer;
+        transition: all 0.2s ease;
+        margin: 0 0.25rem;
+      }
+
+      .color-swatch:hover {
+        transform: scale(1.1);
+        border-color: var(--primary);
+      }
+
+      .color-swatch.selected {
+        border-color: var(--primary);
+        box-shadow: 0 0 0 2px var(--primary);
+      }
+
+      /* Color preview in product image */
+      .color-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.3);
+        display: none;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        color: white;
+        text-shadow: 0 0 5px rgba(0, 0, 0, 0.8);
+      }
+
+      .product-image.with-color .color-overlay {
+        display: flex;
+      }
+
+      .product-info h3 {
+        color: var(--text-light);
+        margin-bottom: 0.5rem;
+        font-size: 1.1rem;
+      }
+
+      .product-info p {
+        color: var(--text-light);
+        opacity: 0.8;
+        margin-bottom: 0.75rem;
+        font-size: 0.9rem;
+      }
+
+      .product-price {
+        font-size: 1.25rem;
+        font-weight: 600;
+        color: var(--success);
+        margin-bottom: 1rem;
+      }
+
+      .product-options {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+      }
+
+      .option-group {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+
+      .option-group label {
+        font-size: 0.85rem;
+        color: var(--text-light);
+        opacity: 0.9;
+      }
+
+      .option-buttons {
+        display: flex;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+      }
+
+      .option-btn {
+        padding: 0.4rem 0.8rem;
+        border: 1px solid var(--border);
+        border-radius: 20px;
+        background: transparent;
+        color: var(--text-light);
+        font-size: 0.85rem;
+        cursor: pointer;
+        transition: all 0.2s ease;
+      }
+
+      .option-btn:hover {
+        border-color: var(--primary);
+        background: rgba(99, 102, 241, 0.1);
+      }
+
+      .option-btn.selected {
+        background: var(--primary);
+        border-color: var(--primary);
+        color: white;
+      }
+
+      .add-to-cart {
+        width: 100%;
+        padding: 0.75rem;
+        border: none;
+        border-radius: 8px;
+        background: var(--primary);
+        color: white;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        margin-top: 0.5rem;
+      }
+
+      .add-to-cart:hover {
+        background: var(--primary-dark);
+      }
+
+      /* Custom Section */
+      .custom-section {
+        background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(139, 92, 246, 0.1));
+        border: 1px solid var(--secondary);
+        border-radius: 15px;
+        padding: 2rem;
+      }
+
+      .custom-section h2 {
+        color: var(--secondary);
+        margin-bottom: 1.5rem;
+        font-size: 1.8rem;
+        text-align: center;
+      }
+
+      .custom-form {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+        max-width: 600px;
+        margin: 0 auto;
+      }
+
+      .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+
+      .form-group label {
+        color: var(--text-light);
+        font-weight: 500;
+      }
+
+      .form-input,
+      .form-textarea {
+        padding: 0.75rem 1rem;
+        border: 2px solid var(--border);
+        border-radius: 8px;
+        background: var(--bg-darker);
+        color: var(--text-light);
+        font-size: 1rem;
+        transition: all 0.3s ease;
+        outline: none;
+      }
+
+      .form-input:focus,
+      .form-textarea:focus {
+        border-color: var(--primary);
+        box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+      }
+
+      .form-textarea {
+        min-height: 100px;
+        resize: vertical;
+      }
+
+      .file-upload {
+        padding: 1.5rem;
+        border: 2px dashed var(--border);
+        border-radius: 8px;
+        background: var(--bg-darker);
+        text-align: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .file-upload:hover {
+        border-color: var(--primary);
+        background: rgba(99, 102, 241, 0.05);
+      }
+
+      .file-upload input {
+        display: none;
+      }
+
+      .file-upload-label {
+        display: block;
+        color: var(--text-light);
+        opacity: 0.8;
+      }
+
+      .submit-btn {
+        padding: 1rem;
+        border: none;
+        border-radius: 8px;
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        color: white;
+        font-size: 1.1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        margin-top: 0.5rem;
+      }
+
+      .submit-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-lg);
+      }
+
+      /* Admin Panel */
+      .admin-panel {
+        background: rgba(30, 30, 50, 0.8);
+        border: 1px solid var(--warning);
+        border-radius: 15px;
+        padding: 1.5rem;
+        display: none;
+      }
+
+      .admin-panel.visible {
+        display: block;
+        animation: fadeIn 0.5s ease;
+      }
+
+      /* Password Modal */
+      .password-modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.9);
+        z-index: 10000;
+        align-items: center;
+        justify-content: center;
+        backdrop-filter: blur(5px);
+      }
+
+      .password-modal.visible {
+        display: flex;
+      }
+
+      .password-content {
+        background: var(--bg-darker);
+        border: 2px solid var(--warning);
+        border-radius: 15px;
+        padding: 2rem;
+        max-width: 400px;
+        width: 90%;
+        text-align: center;
+        box-shadow: var(--shadow-lg);
+      }
+
+      .password-content h2 {
+        color: var(--warning);
+        margin-bottom: 1.5rem;
+      }
+
+      .password-input {
+        width: 100%;
+        padding: 0.75rem 1rem;
+        border: 2px solid var(--border);
+        border-radius: 8px;
+        background: var(--bg-dark);
+        color: var(--text-light);
+        font-size: 1rem;
+        margin-bottom: 1rem;
+        outline: none;
+        transition: all 0.3s ease;
+      }
+
+      .password-input:focus {
+        border-color: var(--warning);
+        box-shadow: 0 0 0 3px rgba(251, 191, 36, 0.2);
+      }
+
+      .password-actions {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+      }
+
+      .password-btn {
+        padding: 0.75rem 1.5rem;
+        border: none;
+        border-radius: 8px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s ease;
+      }
+
+      .password-btn.submit {
+        background: var(--warning);
+        color: var(--bg-dark);
+      }
+
+      .password-btn.submit:hover {
+        background: #fbbf24;
+      }
+
+      .password-btn.cancel {
+        background: var(--bg-dark);
+        color: var(--text-light);
+        border: 1px solid var(--border);
+      }
+
+      .password-btn.cancel:hover {
+        background: var(--border);
+      }
+
+      .password-error {
+        color: var(--danger);
+        margin-top: 1rem;
+        font-size: 0.9rem;
+        display: none;
+      }
+
+      .admin-toggle-btn {
+        padding: 0.75rem 1.5rem;
+        border: 2px solid var(--warning);
+        border-radius: 8px;
+        background: transparent;
+        color: var(--warning);
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        margin-bottom: 1rem;
+      }
+
+      .admin-toggle-btn:hover {
+        background: var(--warning);
+        color: var(--bg-dark);
+      }
+
+      .admin-panel h2 {
+        color: var(--warning);
+        margin-bottom: 1.5rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .admin-form {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1rem;
+      }
+
+      .admin-input {
+        padding: 0.75rem;
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        background: var(--bg-darker);
+        color: var(--text-light);
+        font-size: 0.95rem;
+      }
+
+      .admin-input:focus {
+        outline: none;
+        border-color: var(--warning);
+      }
+
+      .admin-actions {
+        display: flex;
+        gap: 1rem;
+        margin-top: 1rem;
+      }
+
+      .admin-btn {
+        padding: 0.75rem 1.5rem;
+        border: none;
+        border-radius: 8px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s ease;
+      }
+
+      .admin-btn.add {
+        background: var(--success);
+        color: white;
+      }
+
+      .admin-btn.add:hover {
+        background: #16a34a;
+      }
+
+      .admin-btn.clear {
+        background: var(--danger);
+        color: white;
+      }
+
+      .admin-btn.clear:hover {
+        background: #dc2626;
+      }
+
+      /* Orders List */
+      .orders-list {
+        margin-top: 1.5rem;
+        max-height: 300px;
+        overflow-y: auto;
+      }
+
+      .order-item {
+        background: var(--bg-darker);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 1rem;
+        margin-bottom: 0.75rem;
+      }
+
+      .order-header {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 0.5rem;
+      }
+
+      .order-id {
+        color: var(--primary);
+        font-weight: 600;
+      }
+
+      .order-date {
+        color: var(--text-light);
+        opacity: 0.7;
+        font-size: 0.85rem;
+      }
+
+      .order-details {
+        color: var(--text-light);
+        font-size: 0.9rem;
+      }
+
+      /* Footer */
+      footer {
+        background: rgba(10, 10, 23, 0.95);
+        padding: 2rem;
+        text-align: center;
+        margin-top: 2rem;
+        border-top: 1px solid var(--border);
+      }
+
+      .footer-content {
+        max-width: 1400px;
+        margin: 0 auto;
+      }
+
+      .footer-links {
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+        margin-bottom: 1rem;
+        flex-wrap: wrap;
+      }
+
+      .footer-links a {
+        color: var(--text-light);
+        text-decoration: none;
+        opacity: 0.8;
+        transition: all 0.2s ease;
+      }
+
+      .footer-links a:hover {
+        color: var(--primary);
+        opacity: 1;
+      }
+
+      .copyright {
+        color: var(--text-light);
+        opacity: 0.6;
+        font-size: 0.9rem;
+      }
+
+      /* Responsive */
+      @media (max-width: 1024px) {
+        .container {
+          grid-template-columns: 1fr;
+        }
+
+        .side-calculator {
+          position: static;
+          order: -1;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .header-content {
+          flex-direction: column;
+          align-items: stretch;
+        }
+
+        nav ul {
+          justify-content: center;
+          flex-wrap: wrap;
+        }
+
+        .hero h1 {
+          font-size: 2rem;
+        }
+
+        .products-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      /* Animations */
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .section,
+      .product-card,
+      .custom-section,
+      .admin-panel {
+        animation: fadeIn 0.5s ease forwards;
+      }
+
+      /* Tooltip */
+      .tooltip {
+        position: relative;
+      }
+
+      .tooltip::after {
+        content: attr(data-tooltip);
+        position: absolute;
+        bottom: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        padding: 0.5rem 0.75rem;
+        background: var(--text-dark);
+        color: var(--text-light);
+        border-radius: 6px;
+        font-size: 0.8rem;
+        white-space: nowrap;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.2s ease;
+        z-index: 1000;
+      }
+
+      .tooltip:hover::after {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      /* Loading state */
+      .loading {
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        border: 3px solid rgba(99, 102, 241, 0.3);
+        border-radius: 50%;
+        border-top-color: var(--primary);
+        animation: spin 1s ease-in-out infinite;
+      }
+
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="header-content">
+        <div class="logo">
+          <div class="logo-icon">🏗️</div>
+          <span id="company-name">3D Print Company</span>
+        </div>
+        <div class="search-container">
+          <input
+            type="text"
+            class="search-bar"
+            placeholder="🔍 Search products..."
+            id="search-input"
+          />
+        </div>
+        <nav>
+          <ul>
+            <li><a href="#dragon-section" class="tooltip" data-tooltip="Dragon Prints">🐉 Dragons</a></li>
+            <li><a href="#custom-section" class="tooltip" data-tooltip="Custom Orders">✨ Custom</a></li>
+            <li><a href="#contact" class="tooltip" data-tooltip="Contact Us">📞 Contact</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Password Modal -->
+    <div class="password-modal" id="password-modal">
+      <div class="password-content">
+        <h2>🔒 Admin Access</h2>
+        <p style="color: var(--text-light); margin-bottom: 1.5rem;">Enter password to access admin panel</p>
+        <input type="password" class="password-input" id="password-input" placeholder="Enter password..." autocomplete="off" />
+        <div class="password-error" id="password-error">Incorrect password. Try again.</div>
+        <div class="password-actions">
+          <button class="password-btn submit" onclick="checkPassword()">Submit</button>
+          <button class="password-btn cancel" onclick="closePasswordModal()">Cancel</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <!-- Admin Toggle Button -->
+      <div style="grid-column: 1 / -1; text-align: center; margin-bottom: 1rem;">
+        <button class="admin-toggle-btn" onclick="openPasswordModal()">👤 Access Admin Panel</button>
+      </div>
+
+      <!-- Side Calculator -->
+      <aside class="side-calculator">
+        <h2>🧮 Price Calculator</h2>
+        <div class="calculator-display" id="calc-display">0</div>
+        <div class="calculator-buttons">
+          <button class="calc-btn clear" onclick="clearCalc()">AC</button>
+          <button class="calc-btn" onclick="appendToCalc('/')">/</button>
+          <button class="calc-btn" onclick="appendToCalc('7')">7</button>
+          <button class="calc-btn" onclick="appendToCalc('8')">8</button>
+          <button class="calc-btn" onclick="appendToCalc('9')">9</button>
+          <button class="calc-btn" onclick="appendToCalc('*')">×</button>
+          <button class="calc-btn" onclick="appendToCalc('4')">4</button>
+          <button class="calc-btn" onclick="appendToCalc('5')">5</button>
+          <button class="calc-btn" onclick="appendToCalc('6')">6</button>
+          <button class="calc-btn" onclick="appendToCalc('-')">-</button>
+          <button class="calc-btn" onclick="appendToCalc('1')">1</button>
+          <button class="calc-btn" onclick="appendToCalc('2')">2</button>
+          <button class="calc-btn" onclick="appendToCalc('3')">3</button>
+          <button class="calc-btn" onclick="appendToCalc('+')">+</button>
+          <button class="calc-btn" onclick="appendToCalc('0')">0</button>
+          <button class="calc-btn" onclick="appendToCalc('.')">.</button>
+          <button class="calc-btn equals" onclick="calculate()">=</button>
+        </div>
+        <div class="promo-code-container">
+          <h3 style="color: var(--text-light); margin-bottom: 0.75rem;">Promo Code</h3>
+          <div class="promo-input-group">
+            <input type="text" class="promo-input" id="promo-input" placeholder="Enter promo code..." />
+            <button class="promo-btn" onclick="applyPromoCode()">Apply</button>
+          </div>
+          <div class="promo-message" id="promo-message"></div>
+        </div>
+
+        <div class="price-summary">
+          <h3>Order Summary</h3>
+          <div id="price-items">
+            <!-- Price items will be added dynamically -->
+          </div>
+          <div class="price-item" id="discount-line" style="display: none;">
+            <span>Discount:</span>
+            <span id="discount-amount">-$0.00</span>
+          </div>
+          <div class="price-item price-total">
+            <span>Total:</span>
+            <span id="total-price">$0.00</span>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Main Content -->
+      <main>
+        <!-- Hero Section -->
+        <section class="hero">
+          <h1>Welcome to Our 3D Printing Service</h1>
+          <p>High-quality 3D prints customized to your needs. Choose from our popular designs or create your own custom masterpiece.</p>
+        </section>
+
+        <!-- Dragon Section -->
+        <section class="section" id="dragon-section">
+          <div class="section-header">
+            <h2 class="section-title">Dragon Collection</h2>
+            <span class="tooltip" data-tooltip="Popular dragon designs">🔥</span>
+          </div>
+          <div class="products-grid" id="dragon-products">
+            <!-- Dragon products will be loaded here -->
+          </div>
+        </section>
+
+        <!-- Other Sections -->
+        <section class="section">
+          <div class="section-header">
+            <h2 class="section-title">Fantasy Creatures</h2>
+          </div>
+          <div class="products-grid" id="fantasy-products">
+            <!-- Fantasy products will be loaded here -->
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-header">
+            <h2 class="section-title">Home Decor</h2>
+          </div>
+          <div class="products-grid" id="decor-products">
+            <!-- Decor products will be loaded here -->
+          </div>
+        </section>
+
+        <!-- Custom Section -->
+        <section class="custom-section" id="custom-section">
+          <h2>🎨 Custom 3D Print Request</h2>
+          <p style="text-align: center; color: var(--text-light); opacity: 0.9; margin-bottom: 1.5rem;">
+            Don't see what you're looking for? Create your own custom design!
+          </p>
+          <form class="custom-form" id="custom-request-form">
+            <div class="form-group">
+              <label for="custom-name">Your Name</label>
+              <input type="text" class="form-input" id="custom-name" required />
+            </div>
+            <div class="form-group">
+              <label for="custom-email">Email Address</label>
+              <input type="email" class="form-input" id="custom-email" required />
+            </div>
+            <div class="form-group">
+              <label for="custom-title">Design Title</label>
+              <input type="text" class="form-input" id="custom-title" required />
+            </div>
+            <div class="form-group">
+              <label for="custom-description">Description</label>
+              <textarea class="form-textarea" id="custom-description" placeholder="Describe your custom 3D print design..." required></textarea>
+            </div>
+            <div class="form-group">
+              <label for="custom-size">Preferred Size (cm)</label>
+              <input type="text" class="form-input" id="custom-size" placeholder="e.g., 10x10x10" />
+            </div>
+            <div class="form-group">
+              <label for="custom-color">Preferred Color</label>
+              <input type="text" class="form-input" id="custom-color" placeholder="e.g., Red, Blue, Gold" />
+            </div>
+            <div class="form-group">
+              <label for="custom-file">Upload Design File (Optional)</label>
+              <label class="file-upload">
+                <input type="file" id="custom-file" accept=".stl,.obj,.3mf" />
+                <span class="file-upload-label">Drag & drop or click to upload STL/OBJ file</span>
+              </label>
+            </div>
+            <button type="submit" class="submit-btn">Submit Custom Request</button>
+          </form>
+        </section>
+
+        <!-- Admin Panel -->
+        <section class="admin-panel" id="admin-panel">
+          <h2>🛠️ Admin Panel - Add Products</h2>
+          <form class="admin-form" id="admin-form">
+            <div class="form-group">
+              <label for="admin-name">Product Name</label>
+              <input type="text" class="admin-input" id="admin-name" placeholder="e.g., Dragon Figurine" required />
+            </div>
+            <div class="form-group">
+              <label for="admin-section">Section</label>
+              <select class="admin-input" id="admin-section">
+                <option value="dragon">Dragon</option>
+                <option value="fantasy">Fantasy</option>
+                <option value="decor">Home Decor</option>
+                <option value="custom">Custom</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="admin-description">Description</label>
+              <input type="text" class="admin-input" id="admin-description" placeholder="Product description" />
+            </div>
+            <div class="form-group">
+              <label for="admin-price">Base Price ($)</label>
+              <input type="number" class="admin-input" id="admin-price" placeholder="0.00" step="0.01" required />
+            </div>
+            <div class="form-group">
+              <label for="admin-sizes">Available Sizes (format: "Size:Price" or just "Size")</label>
+              <input type="text" class="admin-input" id="admin-sizes" placeholder="e.g., Small:20, Medium:25, Large:30" />
+            </div>
+            <div class="form-group">
+              <label for="admin-colors">Available Colors (comma separated)</label>
+              <input type="text" class="admin-input" id="admin-colors" placeholder="e.g., Red, Blue, Green, Gold" />
+            </div>
+            <div class="form-group">
+              <label for="admin-image">Image URL</label>
+              <input type="text" class="admin-input" id="admin-image" placeholder="https://example.com/image.jpg" />
+            </div>
+            <div class="admin-actions">
+              <button type="button" class="admin-btn add" onclick="addProduct()">+ Add Product</button>
+              <button type="button" class="admin-btn clear" onclick="clearAdminForm()">Clear</button>
+            </div>
+          </form>
+          
+          <div class="orders-list">
+            <h3 style="margin-top: 1.5rem; margin-bottom: 1rem; color: var(--text-light);">Recent Orders</h3>
+            <div id="orders-container">
+              <!-- Orders will be displayed here -->
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <footer id="contact">
+      <div class="footer-content">
+        <div class="footer-links">
+          <a href="#">About Us</a>
+          <a href="#">Services</a>
+          <a href="#">Pricing</a>
+          <a href="#">FAQ</a>
+          <a href="#">Contact</a>
+        </div>
+        <div class="copyright">
+          &copy; 2026 3D Print Company. All rights reserved.
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Products Data Store
+      let products = {
+        dragon: [
+          {
+            id: 1,
+            name: "Fire Dragon",
+            description: "Detailed fire dragon figurine with wings spread",
+            basePrice: 20,
+            sizePrices: {
+              "Small (10cm)": 20,
+              "Medium (15cm)": 25,
+              "Large (20cm)": 30
+            },
+            colors: ["Red", "Orange", "Gold", "Black"],
+            imageUrl: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=400&h=400&fit=crop",
+            image: "🐉"
+          },
+          {
+            id: 2,
+            name: "Ice Dragon",
+            description: "Majestic ice dragon with crystalline details",
+            basePrice: 20,
+            sizePrices: {
+              "Small (10cm)": 20,
+              "Medium (15cm)": 25,
+              "Large (20cm)": 30
+            },
+            colors: ["Blue", "White", "Silver", "Purple"],
+            imageUrl: "https://images.unsplash.com/photo-1551698618-1dfe5d97d256?w=400&h=400&fit=crop",
+            image: "❄️🐉"
+          },
+          {
+            id: 3,
+            name: "Dragon Egg",
+            description: "Mystical dragon egg with textured surface",
+            basePrice: 28.50,
+            sizePrices: {
+              "Small (5cm)": 20,
+              "Medium (8cm)": 25
+            },
+            colors: ["Red", "Blue", "Green", "Gold"],
+            imageUrl: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=400&fit=crop",
+            image: "🥚"
+          }
+        ],
+        fantasy: [
+          {
+            id: 4,
+            name: "Unicorn",
+            description: "Graceful unicorn with flowing mane",
+            basePrice: 38.99,
+            sizePrices: {
+              "Small (10cm)": 30,
+              "Medium (15cm)": 38.99
+            },
+            colors: ["White", "Pink", "Purple", "Rainbow"],
+            imageUrl: "https://images.unsplash.com/photo-1551698618-1dfe5d97d256?w=400&h=400&fit=crop",
+            image: "🦄"
+          },
+          {
+            id: 5,
+            name: "Phoenix",
+            description: "Mythical phoenix rising from flames",
+            basePrice: 42.50,
+            sizePrices: {
+              "Medium (12cm)": 40,
+              "Large (18cm)": 42.50
+            },
+            colors: ["Red", "Orange", "Gold"],
+            imageUrl: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=400&h=400&fit=crop",
+            image: "🔥🦅"
+          }
+        ],
+        decor: [
+          {
+            id: 6,
+            name: "Geometric Vase",
+            description: "Modern geometric pattern vase",
+            basePrice: 25.99,
+            sizePrices: {
+              "Small": 20,
+              "Medium": 25.99,
+              "Large": 30
+            },
+            colors: ["White", "Black", "Gold", "Silver"],
+            imageUrl: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=400&fit=crop",
+            image: "🏺"
+          },
+          {
+            id: 7,
+            name: "Wall Art",
+            description: "3D wall art with intricate patterns",
+            basePrice: 32.99,
+            sizePrices: {
+              "10x10cm": 25,
+              "15x15cm": 32.99,
+              "20x20cm": 40
+            },
+            colors: ["White", "Black", "Gold"],
+            imageUrl: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=400&fit=crop",
+            image: "🖼️"
+          }
+        ]
+      };
+
+      // Valid promo codes and their discounts
+      const PROMO_CODES = {
+        "manav": 0.05,
+        "company": 0.05,
+        "201412": 0.05
+      };
+
+      let currentDiscount = 0;
+
+      // Cart State
+      let cart = [];
+      let totalPrice = 0;
+
+      // Orders State
+      let orders = [];
+
+      // Initialize the page
+      document.addEventListener('DOMContentLoaded', function() {
+        loadProducts();
+        setupSearch();
+        setupForms();
+        loadOrders();
+      });
+
+      // Load products to their respective sections
+      function loadProducts() {
+        loadProductsToSection('dragon', 'dragon-products');
+        loadProductsToSection('fantasy', 'fantasy-products');
+        loadProductsToSection('decor', 'decor-products');
+      }
+
+      function loadProductsToSection(section, containerId) {
+        const container = document.getElementById(containerId);
+        container.innerHTML = '';
+        
+        if (products[section] && products[section].length > 0) {
+          products[section].forEach(product => {
+            const productCard = createProductCard(product, section);
+            container.appendChild(productCard);
+          });
+        } else {
+          container.innerHTML = '<p style="color: var(--text-light); opacity: 0.7;">No products available in this section yet.</p>';
+        }
+      }
+
+      // Color to hex mapping for swatches
+      const colorMap = {
+        'Red': '#ef4444',
+        'Orange': '#f97316',
+        'Gold': '#f59e0b',
+        'Black': '#000000',
+        'Blue': '#3b82f6',
+        'White': '#ffffff',
+        'Silver': '#9ca3af',
+        'Purple': '#8b5cf6',
+        'Green': '#22c55e',
+        'Pink': '#ec4899',
+        'Rainbow': 'linear-gradient(45deg, #ef4444, #f97316, #f59e0b, #22c55e, #3b82f6, #8b5cf6)',
+        'Default': '#6b7280'
+      };
+
+      // Product images mapping
+      const productImages = {
+        'Fire Dragon': 'https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=300&h=300&fit=crop',
+        'Ice Dragon': 'https://images.unsplash.com/photo-1551698618-1dfe5d97d256?w=300&h=300&fit=crop',
+        'Dragon Egg': 'https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=300&h=300&fit=crop',
+        'Unicorn': 'https://images.unsplash.com/photo-1551698618-1dfe5d97d256?w=300&h=300&fit=crop',
+        'Phoenix': 'https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=300&h=300&fit=crop',
+        'Geometric Vase': 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=300&h=300&fit=crop',
+        'Wall Art': 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=300&h=300&fit=crop'
+      };
+
+      function createProductCard(product, section) {
+        const card = document.createElement('div');
+        card.className = 'product-card';
+        card.dataset.section = section;
+        card.dataset.id = product.id;
+
+        // Get sizes from sizePrices or sizes
+        const sizes = product.sizePrices ? Object.keys(product.sizePrices) : product.sizes;
+        const sizeOptions = sizes.map((size, index) => {
+          const price = product.sizePrices ? product.sizePrices[size] : product.basePrice;
+          const isFirst = index === 0;
+          return `
+            <button class="option-btn${isFirst ? ' selected' : ''}" data-type="size" data-value="${size}" data-price="${price}">${size}</button>
+          `;
+        }).join('');
+
+        // Create color swatches
+        const colorSwatches = product.colors.map((color, index) => {
+          const colorValue = colorMap[color] || '#6b7280';
+          const isFirst = index === 0;
+          return `
+            <div class="color-swatch${isFirst ? ' selected' : ''}" 
+                 data-type="color" 
+                 data-value="${color}"
+                 style="background: ${colorValue};"
+                 title="${color}"></div>
+          `;
+        }).join('');
+
+        // Get image URL
+        let imageHtml = product.image || '📦';
+        if (productImages[product.name]) {
+          imageHtml = `<img src="${productImages[product.name]}" alt="${product.name}" onerror="this.style.display='none'; this.parentElement.innerHTML='${product.image || '📦'}'" />`;
+        } else if (product.imageUrl) {
+          imageHtml = `<img src="${product.imageUrl}" alt="${product.name}" onerror="this.style.display='none'; this.parentElement.innerHTML='${product.image || '📦'}'" />`;
+        }
+
+        // Get first size price for initial display
+        let displayPrice = product.basePrice || product.price || 0;
+        if (product.sizePrices && sizes.length > 0) {
+          displayPrice = product.sizePrices[sizes[0]];
+        }
+
+        card.innerHTML = `
+          <div class="product-image">
+            ${imageHtml}
+            <div class="color-overlay" id="color-overlay-${product.id}"></div>
+          </div>
+          <div class="product-info">
+            <h3>${product.name}</h3>
+            <p>${product.description}</p>
+            <div class="product-price" id="price-${product.id}">$${displayPrice.toFixed(2)}</div>
+            <div class="product-options">
+              <div class="option-group">
+                <label>Size:</label>
+                <div class="option-buttons" id="size-options-${product.id}">
+                  ${sizeOptions}
+                </div>
+              </div>
+              <div class="option-group">
+                <label>Color:</label>
+                <div class="option-buttons" id="color-options-${product.id}" style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                  ${colorSwatches}
+                </div>
+              </div>
+              <button class="add-to-cart" onclick="addToCart(${product.id}, '${section}')">Add to Cart</button>
+            </div>
+          </div>
+        `;
+
+        return card;
+      }
+
+      // Add to cart functionality
+      function addToCart(productId, section) {
+        const product = findProductById(productId, section);
+        if (!product) return;
+
+        // Get selected options
+        const sizeBtn = document.querySelector(`#size-options-${productId} .option-btn.selected`);
+        const colorSwatch = document.querySelector(`#color-options-${productId} .color-swatch.selected`);
+        
+        if (!sizeBtn || !colorSwatch) {
+          alert('Please select both size and color');
+          return;
+        }
+
+        const size = sizeBtn.dataset.value;
+        const color = colorSwatch.dataset.value;
+        
+        // Get price based on selected size
+        let price = product.basePrice || product.price;
+        if (product.sizePrices && product.sizePrices[size]) {
+          price = product.sizePrices[size];
+        }
+
+        // Add to cart
+        cart.push({
+          id: productId,
+          name: product.name,
+          price: price,
+          size: size,
+          color: color,
+          section: section
+        });
+
+        totalPrice += price;
+        updateCartDisplay();
+        
+        // Show confirmation
+        showNotification(`${product.name} (${size}, ${color}) added to cart for $${price.toFixed(2)}!`);
+      }
+
+      function findProductById(id, section) {
+        return products[section].find(p => p.id === id);
+      }
+
+      function updateCartDisplay() {
+        const priceItemsContainer = document.getElementById('price-items');
+        const totalPriceElement = document.getElementById('total-price');
+        const discountLine = document.getElementById('discount-line');
+        const discountAmount = document.getElementById('discount-amount');
+
+        // Clear and rebuild price items
+        priceItemsContainer.innerHTML = '';
+        
+        cart.forEach(item => {
+          const itemElement = document.createElement('div');
+          itemElement.className = 'price-item';
+          itemElement.innerHTML = `
+            <span>${item.name} (${item.size}, ${item.color})</span>
+            <span>$${item.price.toFixed(2)}</span>
+          `;
+          priceItemsContainer.appendChild(itemElement);
+        });
+
+        // Calculate discount
+        const discount = totalPrice * currentDiscount;
+        const finalTotal = totalPrice - discount;
+
+        // Update discount display
+        if (currentDiscount > 0) {
+          discountLine.style.display = 'flex';
+          discountAmount.textContent = `-$${discount.toFixed(2)}`;
+        } else {
+          discountLine.style.display = 'none';
+        }
+
+        totalPriceElement.textContent = `$${finalTotal.toFixed(2)}`;
+      }
+
+      // Promo code functions
+      function applyPromoCode() {
+        const promoInput = document.getElementById('promo-input');
+        const promoMessage = document.getElementById('promo-message');
+        const code = promoInput.value.trim().toLowerCase();
+
+        if (PROMO_CODES[code]) {
+          currentDiscount = PROMO_CODES[code];
+          promoMessage.textContent = `✓ Promo code applied! ${currentDiscount * 100}% discount`;
+          promoMessage.className = 'promo-message';
+          promoMessage.style.display = 'block';
+          updateCartDisplay();
+          showNotification(`Promo code "${code}" applied!`);
+        } else {
+          currentDiscount = 0;
+          promoMessage.textContent = '✗ Invalid promo code';
+          promoMessage.className = 'promo-message error';
+          promoMessage.style.display = 'block';
+          updateCartDisplay();
+        }
+
+        promoInput.value = '';
+      }
+
+      function showNotification(message) {
+        // Create notification element
+        const notification = document.createElement('div');
+        notification.style.cssText = `
+          position: fixed;
+          top: 20px;
+          right: 20px;
+          background: var(--success);
+          color: white;
+          padding: 1rem 1.5rem;
+          border-radius: 8px;
+          box-shadow: var(--shadow-lg);
+          z-index: 10000;
+          animation: slideIn 0.3s ease;
+          font-weight: 500;
+        `;
+        notification.textContent = message;
+
+        document.body.appendChild(notification);
+
+        // Remove after 3 seconds
+        setTimeout(() => {
+          notification.style.animation = 'slideOut 0.3s ease';
+          setTimeout(() => notification.remove(), 300);
+        }, 3000);
+      }
+
+      // Calculator functionality
+      let calcValue = '0';
+      let calcDisplay = document.getElementById('calc-display');
+
+      function appendToCalc(value) {
+        if (calcValue === '0' && value !== '.') {
+          calcValue = value;
+        } else {
+          calcValue += value;
+        }
+        calcDisplay.textContent = calcValue;
+      }
+
+      function clearCalc() {
+        calcValue = '0';
+        calcDisplay.textContent = calcValue;
+      }
+
+      function calculate() {
+        try {
+          // Replace × with * for calculation
+          const expression = calcValue.replace(/×/g, '*');
+          calcValue = eval(expression).toString();
+          calcDisplay.textContent = calcValue;
+        } catch (e) {
+          calcDisplay.textContent = 'Error';
+          setTimeout(clearCalc, 1000);
+        }
+      }
+
+      // Search functionality
+      function setupSearch() {
+        const searchInput = document.getElementById('search-input');
+        
+        searchInput.addEventListener('input', function() {
+          const query = this.value.toLowerCase();
+          
+          if (query === '') {
+            loadProducts();
+            return;
+          }
+
+          // Search across all products
+          const results = [];
+          Object.keys(products).forEach(section => {
+            products[section].forEach(product => {
+              if (product.name.toLowerCase().includes(query) ||
+                  product.description.toLowerCase().includes(query)) {
+                results.push({ ...product, section });
+              }
+            });
+          });
+
+          // Display results
+          displaySearchResults(results);
+        });
+      }
+
+      function displaySearchResults(results) {
+        // Clear all product sections
+        document.getElementById('dragon-products').innerHTML = '';
+        document.getElementById('fantasy-products').innerHTML = '';
+        document.getElementById('decor-products').innerHTML = '';
+
+        if (results.length === 0) {
+          document.getElementById('dragon-products').innerHTML = `
+            <p style="color: var(--text-light); opacity: 0.7; grid-column: 1 / -1;">
+              No products found matching your search.
+            </p>
+          `;
+          return;
+        }
+
+        // Group results by section
+        const groupedResults = {};
+        results.forEach(result => {
+          if (!groupedResults[result.section]) {
+            groupedResults[result.section] = [];
+          }
+          groupedResults[result.section].push(result);
+        });
+
+        // Display results in their respective sections
+        Object.keys(groupedResults).forEach(section => {
+          const container = document.getElementById(`${section}-products`);
+          if (container) {
+            groupedResults[section].forEach(product => {
+              const productCard = createProductCard(product, section);
+              container.appendChild(productCard);
+            });
+          }
+        });
+      }
+
+      // Option selection
+      document.addEventListener('click', function(e) {
+        // Handle size buttons
+        if (e.target.classList.contains('option-btn') && e.target.dataset.type === 'size') {
+          const container = e.target.parentElement;
+          container.querySelectorAll('.option-btn').forEach(btn => btn.classList.remove('selected'));
+          e.target.classList.add('selected');
+          updateProductPrice(e.target);
+        }
+        
+        // Handle color swatches
+        if (e.target.classList.contains('color-swatch')) {
+          const container = e.target.parentElement;
+          container.querySelectorAll('.color-swatch').forEach(swatch => swatch.classList.remove('selected'));
+          e.target.classList.add('selected');
+          updateColorPreview(e.target);
+        }
+      });
+
+      // Update product price based on selected size
+      function updateProductPrice(sizeButton) {
+        const productId = parseInt(sizeButton.closest('.product-card').dataset.id);
+        const section = sizeButton.closest('.product-card').dataset.section;
+        const product = findProductById(productId, section);
+        
+        if (!product) return;
+
+        const size = sizeButton.dataset.value;
+        const priceElement = document.getElementById(`price-${productId}`);
+        
+        let price = product.basePrice || product.price;
+        if (product.sizePrices && product.sizePrices[size]) {
+          price = product.sizePrices[size];
+        }
+
+        if (priceElement) {
+          priceElement.textContent = `$${price.toFixed(2)}`;
+        }
+      }
+
+      // Update color preview
+      function updateColorPreview(colorSwatch) {
+        const productId = parseInt(colorSwatch.closest('.product-card').dataset.id);
+        const color = colorSwatch.dataset.value;
+        const overlay = document.getElementById(`color-overlay-${productId}`);
+        const colorValue = colorMap[color] || '#6b7280';
+        
+        if (overlay) {
+          overlay.innerHTML = `<span style="background: ${colorValue}; padding: 0.5rem 1rem; border-radius: 20px; color: ${color === 'White' || color === 'Rainbow' ? '#000' : '#fff'}; font-weight: bold;">${color}</span>`;
+          overlay.style.background = 'rgba(0, 0, 0, 0.7)';
+        }
+      }
+
+      // Admin functionality
+      function setupForms() {
+        // Custom request form
+        document.getElementById('custom-request-form').addEventListener('submit', function(e) {
+          e.preventDefault();
+          
+          const name = document.getElementById('custom-name').value;
+          const email = document.getElementById('custom-email').value;
+          const title = document.getElementById('custom-title').value;
+          const description = document.getElementById('custom-description').value;
+          const size = document.getElementById('custom-size').value;
+          const color = document.getElementById('custom-color').value;
+          const file = document.getElementById('custom-file').files[0];
+
+          // Create order
+          const order = {
+            id: Date.now(),
+            type: 'custom',
+            customerName: name,
+            customerEmail: email,
+            title: title,
+            description: description,
+            size: size,
+            color: color,
+            file: file ? file.name : 'No file',
+            date: new Date().toISOString(),
+            status: 'Pending'
+          };
+
+          orders.push(order);
+          saveOrders();
+          loadOrders();
+
+          // Show confirmation
+          showNotification('Custom request submitted! We will contact you soon.');
+          
+          // Reset form
+          this.reset();
+        });
+      }
+
+      function addProduct() {
+        const name = document.getElementById('admin-name').value;
+        const section = document.getElementById('admin-section').value;
+        const description = document.getElementById('admin-description').value;
+        const basePrice = parseFloat(document.getElementById('admin-price').value);
+        const sizesInput = document.getElementById('admin-sizes').value;
+        const colors = document.getElementById('admin-colors').value.split(',').map(c => c.trim());
+        const imageUrl = document.getElementById('admin-image').value || '';
+
+        if (!name || isNaN(basePrice)) {
+          alert('Please fill in required fields (Name and Base Price)');
+          return;
+        }
+
+        // Parse sizes with prices if format is "Size:Price"
+        const sizes = [];
+        const sizePrices = {};
+        const sizeEntries = sizesInput.split(',').map(s => s.trim());
+        
+        sizeEntries.forEach(entry => {
+          if (entry.includes(':')) {
+            const [size, price] = entry.split(':');
+            sizes.push(size.trim());
+            sizePrices[size.trim()] = parseFloat(price.trim());
+          } else {
+            sizes.push(entry);
+            // Use base price for this size
+            sizePrices[entry] = basePrice;
+          }
+        });
+
+        // Create new product
+        const newProduct = {
+          id: Date.now(),
+          name: name,
+          description: description,
+          basePrice: basePrice,
+          sizePrices: Object.keys(sizePrices).length > 0 ? sizePrices : { "Standard": basePrice },
+          sizes: sizes.length > 0 ? sizes : ["Standard"],
+          colors: colors.length > 0 ? colors : ["Default"],
+          imageUrl: imageUrl,
+          image: imageUrl ? '' : getProductEmoji(name)
+        };
+
+        // Add to products
+        if (!products[section]) {
+          products[section] = [];
+        }
+        products[section].push(newProduct);
+
+        // Reload products
+        loadProductsToSection(section, `${section}-products`);
+
+        // Show confirmation
+        showNotification(`Product "${name}" added to ${section} section!`);
+
+        // Clear form
+        clearAdminForm();
+      }
+
+      function getProductEmoji(name) {
+        const emojiMap = {
+          'dragon': '🐉',
+          'fire': '🔥',
+          'ice': '❄️',
+          'egg': '🥚',
+          'unicorn': '🦄',
+          'phoenix': '🔥🦅',
+          'vase': '🏺',
+          'art': '🖼️',
+          'wall': '🖼️'
+        };
+        const lowerName = name.toLowerCase();
+        for (const [key, emoji] of Object.entries(emojiMap)) {
+          if (lowerName.includes(key)) {
+            return emoji;
+          }
+        }
+        return '📦';
+      }
+
+      function clearAdminForm() {
+        document.getElementById('admin-name').value = '';
+        document.getElementById('admin-description').value = '';
+        document.getElementById('admin-price').value = '';
+        document.getElementById('admin-sizes').value = '';
+        document.getElementById('admin-colors').value = '';
+        document.getElementById('admin-image').value = '';
+      }
+
+      // Orders management
+      function saveOrders() {
+        localStorage.setItem('3d-print-orders', JSON.stringify(orders));
+      }
+
+      function loadOrders() {
+        const savedOrders = localStorage.getItem('3d-print-orders');
+        if (savedOrders) {
+          orders = JSON.parse(savedOrders);
+        }
+        displayOrders();
+      }
+
+      function displayOrders() {
+        const container = document.getElementById('orders-container');
+        container.innerHTML = '';
+
+        if (orders.length === 0) {
+          container.innerHTML = '<p style="color: var(--text-light); opacity: 0.7;">No orders yet.</p>';
+          return;
+        }
+
+        // Display last 5 orders
+        const recentOrders = orders.slice(-5).reverse();
+        
+        recentOrders.forEach(order => {
+          const orderElement = document.createElement('div');
+          orderElement.className = 'order-item';
+          
+          const date = new Date(order.date).toLocaleDateString();
+          const time = new Date(order.date).toLocaleTimeString();
+
+          if (order.type === 'custom') {
+            orderElement.innerHTML = `
+              <div class="order-header">
+                <span class="order-id">Custom Request #${order.id}</span>
+                <span class="order-date">${date} ${time}</span>
+              </div>
+              <div class="order-details">
+                <strong>Customer:</strong> ${order.customerName}<br>
+                <strong>Email:</strong> ${order.customerEmail}<br>
+                <strong>Title:</strong> ${order.title}<br>
+                <strong>Description:</strong> ${order.description}<br>
+                <strong>Size:</strong> ${order.size || 'Not specified'}<br>
+                <strong>Color:</strong> ${order.color || 'Not specified'}<br>
+                <strong>File:</strong> ${order.file}<br>
+                <strong>Status:</strong> <span style="color: var(--warning);">${order.status}</span>
+              </div>
+            `;
+          } else {
+            orderElement.innerHTML = `
+              <div class="order-header">
+                <span class="order-id">Order #${order.id}</span>
+                <span class="order-date">${date} ${time}</span>
+              </div>
+              <div class="order-details">
+                <strong>Items:</strong> ${order.items ? order.items.length : 0}<br>
+                <strong>Total:</strong> $${order.total ? order.total.toFixed(2) : '0.00'}<br>
+                <strong>Status:</strong> <span style="color: var(--success);">${order.status || 'Completed'}</span>
+              </div>
+            `;
+          }
+
+          container.appendChild(orderElement);
+        });
+      }
+
+      // Company name update
+      function updateCompanyName(name) {
+        document.getElementById('company-name').textContent = name;
+        document.title = name;
+      }
+
+      // Add CSS animations
+      const style = document.createElement('style');
+      style.textContent = `
+        @keyframes slideIn {
+          from {
+            transform: translateX(100%);
+            opacity: 0;
+          }
+          to {
+            transform: translateX(0);
+            opacity: 1;
+          }
+        }
+        @keyframes slideOut {
+          from {
+            transform: translateX(0);
+            opacity: 1;
+          }
+          to {
+            transform: translateX(100%);
+            opacity: 0;
+          }
+        }
+      `;
+      document.head.appendChild(style);
+
+      // Password protection for admin panel
+      const ADMIN_PASSWORD = "201412";
+      let isAdminAuthenticated = false;
+
+      function openPasswordModal() {
+        document.getElementById('password-modal').classList.add('visible');
+        document.getElementById('password-input').value = '';
+        document.getElementById('password-input').focus();
+        document.getElementById('password-error').style.display = 'none';
+      }
+
+      function closePasswordModal() {
+        document.getElementById('password-modal').classList.remove('visible');
+        document.getElementById('password-input').value = '';
+        document.getElementById('password-error').style.display = 'none';
+      }
+
+      function checkPassword() {
+        const password = document.getElementById('password-input').value;
+        const errorElement = document.getElementById('password-error');
+
+        if (password === ADMIN_PASSWORD) {
+          isAdminAuthenticated = true;
+          closePasswordModal();
+          document.getElementById('admin-panel').classList.add('visible');
+          showNotification('Admin access granted!');
+          
+          // Scroll to admin panel
+          document.getElementById('admin-panel').scrollIntoView({ behavior: 'smooth' });
+        } else {
+          errorElement.style.display = 'block';
+          document.getElementById('password-input').value = '';
+          document.getElementById('password-input').focus();
+        }
+      }
+
+      // Close modal on escape key
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+          closePasswordModal();
+        }
+      });
+
+      // Close modal on outside click
+      document.getElementById('password-modal').addEventListener('click', function(e) {
+        if (e.target === this) {
+          closePasswordModal();
+        }
+      });
+
+      // Expose functions to global scope for inline event handlers
+      window.addToCart = addToCart;
+      window.appendToCalc = appendToCalc;
+      window.clearCalc = clearCalc;
+      window.calculate = calculate;
+      window.addProduct = addProduct;
+      window.clearAdminForm = clearAdminForm;
+      window.updateCompanyName = updateCompanyName;
+      window.openPasswordModal = openPasswordModal;
+      window.closePasswordModal = closePasswordModal;
+      window.checkPassword = checkPassword;
+      window.applyPromoCode = applyPromoCode;
+      window.getProductEmoji = getProductEmoji;
+    </script>
+  </body>
+</html>
