@@ -1,3 +1,4 @@
+```html
 <!doctype html>
 <html lang="en">
   <head>
@@ -105,6 +106,7 @@
         align-items: center;
         justify-content: center;
         font-size: 1.5rem;
+        box-shadow: 0 0 15px rgba(99, 102, 241, 0.6);
       }
 
       .search-container {
@@ -1209,7 +1211,7 @@
     <header>
       <div class="header-content">
         <div class="logo">
-          <div class="logo-icon">🏗️</div>
+          <div class="logo-icon">🐉</div>
           <span id="company-name">3D Print Company</span>
         </div>
         <div class="search-container">
@@ -1281,6 +1283,19 @@
             <button class="promo-btn" onclick="applyPromoCode()">Apply</button>
           </div>
           <div class="promo-message" id="promo-message"></div>
+        </div>
+        <!-- Price Summary -->
+        <div class="price-summary" id="price-summary">
+          <h3>🛍️ Cart Summary</h3>
+          <div id="price-items"></div>
+          <div id="discount-line" class="price-item" style="display: none; color: var(--success);">
+            <span>Discount:</span>
+            <span id="discount-amount">$0.00</span>
+          </div>
+          <div class="price-total">
+            <span>Total:</span>
+            <span id="total-price">$0.00</span>
+          </div>
         </div>
       </aside>
 
@@ -1728,6 +1743,13 @@
                   ${colorSwatches}
                 </div>
               </div>
+              <div class="option-group">
+                <label>Quality:</label>
+                <div class="option-buttons" id="quality-options-${product.id}">
+                  <button class="option-btn selected" data-type="quality" data-value="Default" data-multiplier="1.0">Default</button>
+                  <button class="option-btn" data-type="quality" data-value="Good" data-multiplier="1.3">Good Quality (+30%)</button>
+                </div>
+              </div>
               <button class="add-to-cart" onclick="addToCart(${product.id}, '${section}')">Add to Cart</button>
             </div>
           </div>
@@ -1744,20 +1766,25 @@
         // Get selected options
         const sizeBtn = document.querySelector(`#size-options-${productId} .option-btn.selected`);
         const colorSwatch = document.querySelector(`#color-options-${productId} .color-swatch.selected`);
+        const qualityBtn = document.querySelector(`#quality-options-${productId} .option-btn.selected`);
 
-        if (!sizeBtn || !colorSwatch) {
-          alert('Please select both size and color');
+        if (!sizeBtn || !colorSwatch || !qualityBtn) {
+          alert('Please select size, color, and quality');
           return;
         }
 
         const size = sizeBtn.dataset.value;
         const color = colorSwatch.dataset.value;
+        const quality = qualityBtn.dataset.value;
+        const qualityMultiplier = parseFloat(qualityBtn.dataset.multiplier);
 
         // Get price based on selected size
         let price = product.basePrice || product.price;
         if (product.sizePrices && product.sizePrices[size]) {
           price = product.sizePrices[size];
         }
+        // Apply quality multiplier
+        price = Math.round(price * qualityMultiplier * 100) / 100;
 
         // Add to cart
         cart.push({
@@ -1766,13 +1793,14 @@
           price: price,
           size: size,
           color: color,
+          quality: quality,
           section: section
         });
 
         totalPrice += price;
         updateCartDisplay();
         updateCartPreview();
-        showNotification(`${product.name} (${size}, ${color}) added to cart for $${price.toFixed(2)}!`);
+        showNotification(`${product.name} (${size}, ${color}, ${quality}) added to cart for $${price.toFixed(2)}!`);
       }
 
       function findProductById(id, section) {
@@ -1792,7 +1820,7 @@
           const itemElement = document.createElement('div');
           itemElement.className = 'price-item';
           itemElement.innerHTML = `
-            <span>${item.name} (${item.size}, ${item.color})</span>
+            <span>${item.name} (${item.size}, ${item.color}, ${item.quality || 'Default'})</span>
             <span>$${item.price.toFixed(2)}</span>
           `;
           priceItemsContainer.appendChild(itemElement);
@@ -1829,7 +1857,7 @@
             itemElement.innerHTML = `
               <div class="cart-item-info">
                 <div class="cart-item-name">${item.name}</div>
-                <div class="cart-item-details">${item.size}, ${item.color}</div>
+                <div class="cart-item-details">${item.size}, ${item.color}, ${item.quality || 'Default'}</div>
               </div>
               <div class="cart-item-price">$${item.price.toFixed(2)}</div>
             `;
@@ -1999,6 +2027,11 @@
           container.querySelectorAll('.option-btn').forEach(btn => btn.classList.remove('selected'));
           e.target.classList.add('selected');
           updateProductPrice(e.target);
+        } else if (e.target.classList.contains('option-btn') && e.target.dataset.type === 'quality') {
+          const container = e.target.parentElement;
+          container.querySelectorAll('.option-btn').forEach(btn => btn.classList.remove('selected'));
+          e.target.classList.add('selected');
+          updateProductPrice(e.target);  // Reuse to update price
         }
 
         if (e.target.classList.contains('color-swatch')) {
@@ -2006,24 +2039,35 @@
           container.querySelectorAll('.color-swatch').forEach(swatch => swatch.classList.remove('selected'));
           e.target.classList.add('selected');
           updateColorPreview(e.target);
+          // Update price in case quality affects it, though not directly
+          const productCard = e.target.closest('.product-card');
+          if (productCard) {
+            const dummyBtn = productCard.querySelector('.option-btn');
+            if (dummyBtn) updateProductPrice(dummyBtn);
+          }
         }
       });
 
       function updateProductPrice(sizeButton) {
-        const productId = parseInt(sizeButton.closest('.product-card').dataset.id);
-        const section = sizeButton.closest('.product-card').dataset.section;
+        const productCard = sizeButton.closest('.product-card');
+        const productId = parseInt(productCard.dataset.id);
+        const section = productCard.dataset.section;
         const product = findProductById(productId, section);
 
         if (!product) return;
 
-        const size = sizeButton.dataset.value;
-        const priceElement = document.getElementById(`price-${productId}`);
+        const sizeBtn = productCard.querySelector(`#size-options-${productId} .option-btn.selected`);
+        const qualityBtn = productCard.querySelector(`#quality-options-${productId} .option-btn.selected`);
 
-        let price = product.basePrice || product.price;
-        if (product.sizePrices && product.sizePrices[size]) {
-          price = product.sizePrices[size];
+        let basePrice = product.basePrice || product.price;
+        if (sizeBtn && product.sizePrices && product.sizePrices[sizeBtn.dataset.value]) {
+          basePrice = product.sizePrices[sizeBtn.dataset.value];
         }
 
+        const qualityMultiplier = qualityBtn ? parseFloat(qualityBtn.dataset.multiplier) : 1.0;
+        let price = Math.round(basePrice * qualityMultiplier * 100) / 100;
+
+        const priceElement = document.getElementById(`price-${productId}`);
         if (priceElement) {
           priceElement.textContent = `$${price.toFixed(2)}`;
         }
@@ -2427,3 +2471,4 @@
     </script>
   </body>
 </html>
+```
